@@ -454,3 +454,7 @@ public class ShopingCart {
   - Membuat objek dari kelas Elektronik, Pakaian, dan Makanan, serta mengatur tanggal kadaluarsa menggunakan Calendar.
   - Membuat objek KeranjangBelanja dan menambahkan produk ke dalam keranjang.
   - Memanggil displayKeranjang() untuk menampilkan informasi semua produk di keranjang.
+```
+
+#  • Output
+![gambar](Tugas-Pemrograman-Orientasi-Objek-Pert-7/ss4.png)
