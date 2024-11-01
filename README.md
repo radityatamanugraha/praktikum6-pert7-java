@@ -4,6 +4,7 @@
 |----|---|-----|------|
 |**Radityatama Nugraha**|**312310644**|**TI.23.A6**|**Pemrograman Orientasi Objek**|
 
+#  • Soal 1
 ![gambar](Tugas-Pemrograman-Orientasi-Objek-Pert-7/ss1.png)
 
 #  • Dari modul praktikum 3, tambahkan constructor pada masing-masing class dan tambahkan overload dan override constructor tersebut.
@@ -194,24 +195,262 @@ public class main {
 - Metode main:
   - Membuat tiga objek Programmer dengan berbagai parameter (nama, gaji pokok, bonus) dan mencetak informasi mereka menggunakan metode cetakInfo().
   - Juga menciptakan satu objek Manager dan mencetak informasinya untuk menunjukkan cara penggunaan kelas Manager.
+```
 
+#  • Output
+![gambar](Tugas-Pemrograman-Orientasi-Objek-Pert-7/ss2.png)
 
+#  • Soal 2 
+![gambar](Tugas-Pemrograman-Orientasi-Objek-Pert-7/ss3.png)
 
+#  • Studi kasus: Sistem Pembelian Online dengan Keranjang Belanja
 
+##  • Kelas Produk
+```java
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
+class Produk {
+    protected String namaProduk;
+    protected double harga;
+    protected int jumlahStok;
 
+    public Produk(String namaProduk, double harga, int jumlahStok) {
+        this.namaProduk = namaProduk;
+        this.harga = harga;
+        this.jumlahStok = jumlahStok;
+    }
 
+    public void displayInfo() {
+        DecimalFormat df = new DecimalFormat("#.##");
+        System.out.println("Nama Produk: " + namaProduk);
+        System.out.println("Harga: " + df.format(harga));
+        System.out.println("Jumlah Stok: " + jumlahStok);
+    }
+}
+```
 
+### • Penjelasan:
+```
+- Kelas Produk: Kelas dasar untuk semua produk yang memiliki atribut dasar seperti nama, harga, dan jumlah stok.
 
+- Atribut:
+  - String namaProduk: Nama produk.
+  - double harga: Harga produk.
+  - int jumlahStok: Jumlah stok produk yang tersedia.
 
+- Konstruktor: Untuk menginisialisasi nama produk, harga, dan jumlah stok saat objek Produk dibuat.
 
+- Metode displayInfo(): Menampilkan informasi produk dengan format harga yang ditentukan menggunakan DecimalFormat.
 
+##  • Kelas Elektronik
+```java
+class Elektronik extends Produk {
+    @SuppressWarnings("FieldMayBeFinal")
+    private int garansi;
 
+    public Elektronik(String namaProduk, double harga, int jumlahStok, int garansi) {
+        super(namaProduk, harga, jumlahStok);
+        this.garansi = garansi;
+    }
 
+    @Override
+    public void displayInfo() {
+        super.displayInfo();
+        System.out.println("Garansi: " + garansi + " tahun");
+    }
+}
+```
 
+### • Penjelasan:
+```
+- Kelas Elektronik: Subclass dari Produk untuk kategori produk elektronik.
+- Atribut:
+  - int garansi: Menyimpan lama garansi produk elektronik dalam tahun.
 
+- Konstruktor: Menginisialisasi atribut produk elektronik, termasuk garansi.
 
+- Metode displayInfo(): Mengoverride metode dari Produk untuk menampilkan informasi tambahan yaitu garansi.
+```
 
+##  • Kelas Pakaian
+```java
+class Pakaian extends Produk {
+    @SuppressWarnings("FieldMayBeFinal")
+    private String ukuran;
+    @SuppressWarnings("FieldMayBeFinal")
+    private String warna;
 
+    public Pakaian(String namaProduk, double harga, int jumlahStok, String ukuran, String warna) {
+        super(namaProduk, harga, jumlahStok);
+        this.ukuran = ukuran;
+        this.warna = warna;
+    }
 
+    @Override
+    public void displayInfo() {
+        super.displayInfo();
+        System.out.println("Ukuran: " + ukuran);
+        System.out.println("Warna: " + warna);
+    }
+}
+```
 
+### • Penjelasan:
+```
+- Kelas Pakaian: Subclass dari Produk untuk kategori pakaian.
+
+- Atribut:
+  - String ukuran: Ukuran pakaian.
+  - String warna: Warna pakaian.
+
+- Konstruktor: Menginisialisasi atribut pakaian, termasuk ukuran dan warna.
+
+- Metode displayInfo(): Mengoverride untuk menampilkan informasi tambahan tentang ukuran dan warna.
+```
+
+##  • Kelas Makanan
+```java
+class Makanan extends Produk {
+    private Date tanggalKadaluarsa;
+
+    public Makanan(String namaProduk, double harga, int jumlahStok, Date tanggalKadaluarsa) {
+        super(namaProduk, harga, jumlahStok);
+        this.tanggalKadaluarsa = tanggalKadaluarsa;
+    }
+
+    public void setTanggalKadaluarsa(Date tanggalKadaluarsa) {
+        this.tanggalKadaluarsa = tanggalKadaluarsa;
+    }
+
+    @Override
+    public void displayInfo() {
+        super.displayInfo();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        System.out.println("Tanggal Kadaluarsa: " + dateFormat.format(tanggalKadaluarsa));
+    }
+}
+```
+
+### • Penjelasan:
+```
+- Kelas Makanan: Subclass dari Produk untuk kategori makanan.
+
+- Atribut:
+  - Date tanggalKadaluarsa: Menyimpan tanggal kedaluwarsa produk makanan.
+
+- Konstruktor: Menginisialisasi semua atribut makanan, termasuk tanggal kedaluwarsa.
+
+- Metode setTanggalKadaluarsa(): Setter untuk mengubah tanggal kedaluwarsa.
+
+- Metode displayInfo(): Mengoverride untuk menampilkan informasi tentang tanggal kedaluwarsa dalam format yang ditentukan.
+```
+
+##  • Kelas KeranjangBelanja
+```java
+class KeranjangBelanja {
+    @SuppressWarnings("FieldMayBeFinal")
+    private List<Produk> daftarProduk;
+    private List<Integer> jumlahProduk;
+
+    public KeranjangBelanja() {
+        daftarProduk = new ArrayList<>();
+        jumlahProduk = new ArrayList<>();
+    }
+
+    public void tambahProduk(Produk p, int jumlah) {
+        if (p.jumlahStok >= jumlah) {
+            daftarProduk.add(p);
+            jumlahProduk.add(jumlah);
+            p.jumlahStok -= jumlah;
+            System.out.println(jumlah + " " + p.namaProduk + " ditambahkan ke keranjang.");
+        } else {
+            System.out.println("Stok tidak mencukupi untuk " + p.namaProduk);
+        }
+    }
+
+    public double hitungTotalBelanja() {
+        double total = 0;
+        for (int i = 0; i < daftarProduk.size(); i++) {
+            total += daftarProduk.get(i).harga * jumlahProduk.get(i);
+        }
+        return total;
+    }
+
+    public void displayKeranjang() {
+        DecimalFormat df = new DecimalFormat("#.##");
+        System.out.println("Isi Keranjang Belanja:");
+        for (int i = 0; i < daftarProduk.size(); i++) {
+            Produk p = daftarProduk.get(i);
+            int jumlah = jumlahProduk.get(i);
+            p.displayInfo();
+            System.out.println("Jumlah: " + jumlah);
+            System.out.println("Subtotal: " + df.format(p.harga * jumlah));
+            System.out.println();
+        }
+        System.out.println("Total Harga Semua Produk di Keranjang: " + df.format(hitungTotalBelanja()));
+    }
+
+    public List<Integer> getJumlahProduk() {
+        return jumlahProduk;
+    }
+
+    public void setJumlahProduk(List<Integer> jumlahProduk) {
+        this.jumlahProduk = jumlahProduk;
+    }
+}
+```
+
+### • Penjelasan:
+```
+- Kelas KeranjangBelanja: Kelas ini mengelola daftar produk yang ditambahkan ke
+keranjang.
+
+- Atribut:
+  - List<Produk> daftarProduk: Daftar produk yang ada di keranjang.
+  - List<Integer> jumlahProduk: Jumlah masing-masing produk dalam keranjang.
+
+- Konstruktor: Inisialisasi dua list kosong.
+
+- Metode tambahProduk(Produk p, int jumlah): Menambahkan produk ke keranjang jika stok cukup, mengurangi jumlah stok produk yang ada.
+
+- Metode hitungTotalBelanja(): Menghitung total biaya semua produk di keranjang.
+
+- Metode displayKeranjang(): Menampilkan semua produk dalam keranjang beserta subtotal untuk masing-masing produk dan total keseluruhan.
+```
+##  • Kelas ShopingCart
+```java
+public class ShopingCart {
+    public static void main(String[] args) {
+        Elektronik laptop = new Elektronik("Laptop", 8000000, 10, 2);
+        Pakaian sepatu = new Pakaian("Sepatu", 100000, 50, "L", "Hitam");
+
+        Calendar cal = Calendar.getInstance();
+        cal.set(2024, Calendar.NOVEMBER, 7); 
+        Date tanggalKadaluarsa = cal.getTime();
+        
+        Makanan roti = new Makanan("Roti", 50000, 30, tanggalKadaluarsa);
+
+        KeranjangBelanja keranjang = new KeranjangBelanja();
+
+        keranjang.tambahProduk(laptop, 1);
+        keranjang.tambahProduk(sepatu, 3);
+        keranjang.tambahProduk(roti, 5);
+
+        keranjang.displayKeranjang();
+    }
+}
+```
+
+### • Penjelasan:
+```
+- Kelas ShopingCart: Kelas ini berfungsi sebagai titik masuk untuk program.
+
+- Metode main:
+  - Membuat objek dari kelas Elektronik, Pakaian, dan Makanan, serta mengatur tanggal kadaluarsa menggunakan Calendar.
+  - Membuat objek KeranjangBelanja dan menambahkan produk ke dalam keranjang.
+  - Memanggil displayKeranjang() untuk menampilkan informasi semua produk di keranjang.
