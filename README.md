@@ -246,6 +246,7 @@ class Produk {
 - Konstruktor: Untuk menginisialisasi nama produk, harga, dan jumlah stok saat objek Produk dibuat.
 
 - Metode displayInfo(): Menampilkan informasi produk dengan format harga yang ditentukan menggunakan DecimalFormat.
+```
 
 ##  • Kelas Elektronik
 ```java
